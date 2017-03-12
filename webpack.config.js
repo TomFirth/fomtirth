@@ -1,39 +1,34 @@
-'use:strict'
-
-const path = require('path')
+const path = require('path');
 
 module.exports = {
-  name: 'client',
-  target: 'web',
-  context: path.join(__dirname, '/app'),
+  context: __dirname + "/app",
+
   entry: {
-    javascript: './js/app.js',
-    html: './index.html'
+    javascript: "./js/app.js",
+    html: "./index.html",
   },
+
   output: {
-    filename: '[name].js',
-    path: path.join(__dirname, '/dist')
+    filename: "app.js",
+    path: __dirname + "/dist",
   },
+
   resolve: {
-    extensions: [
-      '.js', '.jsx', '.css', '.html', '.json'
-    ]
+    extensions: ['', '.js', '.jsx', '.json'],
+    root: path.resolve(__dirname, './app/js'),
   },
+
   module: {
     loaders: [
       {
-        exclude: /node_modules/,
         test: /\.jsx?$/,
-        loaders: ["react-hot-loader", "babel-loader"]
+        exclude: /node_modules/,
+        loaders: ["react-hot", "babel-loader"],
       },
       {
         test: /\.html$/,
-        loader: 'file-loader?name=[name].[ext]'
+        loader: "file?name=[name].[ext]",
       },
-      {
-        test: /\.css$/,
-        loaders: ['style', 'css']
-      }
-    ]
-  }
+    ],
+  },
 }

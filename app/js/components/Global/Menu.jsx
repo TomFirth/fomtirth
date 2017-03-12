@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 
-export default class App extends Component {
+export default class Menu extends Component {
   render() {
-    const { children } = this.props;
-
     return (
-      <div className='App'>
+      <div className='Menu'>
         <Link to='/'>Home</Link>
         <Link to='/blog'>Blog</Link>
         <Link to='/files'>Files</Link>
-
-        { children }
+        <Link to='/support'>Support</Link>
+        <hr />
       </div>
     );
   }
