@@ -4,7 +4,7 @@
   "description": "Website for stuff",
   "license": "ISC",
   "scripts": {
-    "start": "node index.js",
+    "start": "nodemon ./index.js",
     "test": "standard && ./node_modules/.bin/mocha --reporter spec tests/*.js"
   },
   "repository": {
@@ -21,7 +21,7 @@
   "dependencies": {
     "q": "^1.5.0",
     "lodash": "^4.17.4",
-    "dust": "^0.3.0",
+    "handlebars": "^4.0.8",
     "prismic-cli": "^3.0.1"
   },
   "standard": {
