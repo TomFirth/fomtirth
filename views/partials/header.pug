@@ -1,0 +1,15 @@
+html
+  head
+    title #{pageTitle} - #{pageDescription} - fomtirth
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    style
+      include /assets/css/style.css
+  body
+    block content
+      header
+        h1 fomtirth
+        p #{pageDescription}
+        nav
+          a(href="/") Home
+          a(href="/blog") Blog
+          a(href="/files") Files

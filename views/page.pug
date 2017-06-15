@@ -1,4 +1,15 @@
-extends layout.pug
+include ./partials/header.pug
 
-block content
-  h1= title
+article
+  //- main content
+  if many
+    //- many articles
+    //- include ./partials/many.pug
+  else
+    //- single article
+    //- include ./partials/single.pug
+
+section
+  //- short cuts
+
+include ./partials/footer.pug

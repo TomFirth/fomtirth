@@ -1,0 +1,29 @@
+/* default */
+html, body {
+  background-color: #ffffff;
+  font-family: sans-serif;
+}
+h1, h2, h3 {
+  color: #333333;
+}
+p {}
+a {}
+a:hover {}
+
+/* page */
+header {
+  background-color: #fafafa;
+}
+header nav {}
+header nav a {}
+header nav a:hover {}
+header nav a:selected {}
+article {}
+section {}
+footer {}
+footer a {}
+footer a:hover {}
+
+/* misc */
+
+/* media */
