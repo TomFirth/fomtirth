@@ -1,5 +1,5 @@
-/* default */
 html, body {
+  margin: 0;
   background-color: #ffffff;
   font-family: sans-serif;
 }
@@ -10,7 +10,6 @@ p {}
 a {}
 a:hover {}
 
-/* page */
 header {
   background-color: #fafafa;
 }
@@ -23,7 +22,3 @@ section {}
 footer {}
 footer a {}
 footer a:hover {}
-
-/* misc */
-
-/* media */
