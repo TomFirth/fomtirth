@@ -1,24 +1,53 @@
 html, body {
   margin: 0;
+  color: #777777;
   background-color: #ffffff;
   font-family: sans-serif;
+  font-size: 10pt;
 }
 h1, h2, h3 {
-  color: #333333;
+  color: #666666;
 }
 p {}
-a {}
-a:hover {}
+a {
+  color: #ABCDEF;
+  text-decoration: none;
+}
+a:hover {
+  color: #88A4BF;
+}
 
 header {
-  background-color: #fafafa;
+  padding: 0.5% 5%;
 }
-header nav {}
-header nav a {}
-header nav a:hover {}
-header nav a:selected {}
-article {}
-section {}
-footer {}
-footer a {}
-footer a:hover {}
+header nav {
+  background-color: #FAFAFA;
+}
+header nav a {
+  text-decoration: none;
+  padding: 0 5%;
+  border-bottom: 5px solid #FFFFFF;
+}
+header nav a:hover {
+  border-bottom: 5px solid #ABCDEF;;
+}
+
+section {
+  width: 70%;
+  float: left;
+}
+
+article {
+  padding: 0% 5%;
+}
+
+aside {
+  width: 30%;
+  float: right;
+}
+
+footer {
+  width: 100%;
+  clear: both;
+  padding: 0% 5%;
+}

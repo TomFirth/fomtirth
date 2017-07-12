@@ -1,8 +1,7 @@
 var express = require('express')
 var app = express()
 var path = require('path')
-var utils = require('./libs/utilities')
-var config = require('./config/default')
+var prismic = require('./libs/prismic')
 
 app.set('view engine', 'pug')
 app.locals.basedir = path.join(__dirname, '/')
@@ -15,8 +14,8 @@ app.get('/favicon.ico', function(request, response) {
   response.sendStatus(204)
 })
 
-app.get(['/', '/:endpoint'], (request, response) => {
-  utils.getContent(response)
+app.get(['/', '/:endpoint', '/:endpoint/:single'], (request, response) => {
+  prismic.getPrismic(response)
 })
 
 app.listen(port, () => {

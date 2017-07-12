@@ -3,18 +3,16 @@ Personal website in node.
 
 #### TODO ####
 + ~~make it work~~
-+ add blog and content (Prismic)
-+ add files (script library - Github)
-+ add functional menu and responsive styling
-+ logging (Loggly - because)
-+ metrics (SumoLogic - also because)
-+ extras (cloudant)
-+ additional services (Docker)
++ ~~add blog and content (Prismic)~~
++ responsive layout
++ GitHub integration and local file navigation
++ Loggly integration
++ Cloudant integration
++ deploy with Docker
 
 #### 3rd Party Services ####
-+ [AWS EC2 and S3](https://aws.amazon.com/free) (free/cheap - cloud hosting with node [and much more!] support)
-+ [Docker](https://www.docker.com/pricing) (free - multiple services packaged into one)
++ [AWS EC2](https://aws.amazon.com/free) (free/cheap - cloud hosting with node [and much more!] support)
 + [Prismic.io](https://prismic.io/pricing) (free - content management)
 + [Cloudant](https://cloudant.com/product/pricing) (free - fast json storage)
 + [Loggly](https://www.loggly.com/plans-and-pricing) (free - logging)
-+ [SumoLogic](https://www.sumologic.com/pricing) (free - metrics)
++ [Docker](https://www.docker.com/pricing) (free - multiple services packaged into one)
