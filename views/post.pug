@@ -1,0 +1,17 @@
+include ./layout.pug
+
+article
+  //- main content
+
+  section
+    each article in prismicDocs
+      article
+        //- uid
+        h3 
+          a(href="/blog/" + article.uid)= article.title
+        //- type
+        //- slug
+        p= article.data
+        p= article.slug
+  aside
+    p is there anything here
