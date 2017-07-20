@@ -16,7 +16,7 @@ var configuration = require('./prismic-configuration')
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 app.locals.basedir = path.join(__dirname, '/')
-app.use(favicon('public/images/punch.png'))
+app.use(favicon('images/punch.png'))
 app.use(logger('dev'))
 app.use(bodyParser())
 app.use(methodOverride())
@@ -28,7 +28,7 @@ require('dotenv').config()
 var port = process.env.PORT || 8080
 
 app.listen(port, () => {
-  console.log('Point your browser to http://localhost:' + [port])
+  console.log(port, 'belones to us')
 })
 
 app.use((req, res, next) => {

@@ -6,15 +6,16 @@ html, body {
   font-size: 10pt;
 }
 h1, h2, h3 {
-  color: #666666;
+  background: #FAFAFA;
+  color: #AAAAAA;
 }
 p {}
 a {
-  color: #ABCDEF;
+  color: #666666;
   text-decoration: none;
 }
 a:hover {
-  color: #88A4BF;
+  color: #444444;
 }
 
 header {
@@ -29,7 +30,7 @@ header nav a {
   border-bottom: 5px solid #FFFFFF;
 }
 header nav a:hover {
-  border-bottom: 5px solid #ABCDEF;;
+  border-bottom: 5px solid #000000;
 }
 
 section {
