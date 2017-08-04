@@ -28,7 +28,7 @@ require('dotenv').config()
 var port = process.env.PORT || 8080
 
 app.listen(port, () => {
-  console.log(port, 'belones to us')
+  console.log(port, 'belongs to us')
 })
 
 app.use((req, res, next) => {
@@ -72,11 +72,11 @@ app.get(['/', '/blog'], (req, res) => {
     }
   })
   .then((articles) => {
-    // build page content object
     var content = {
       title: 'blog',
-      pageDescription: conf.fomtirth.pages['blog'],
-      prismicDocs: articles
+      description: conf.fomtirth.pages['blog'],
+      prismicDocs: articles,
+      single: false
     }
     res.render('post', content)
   })
@@ -84,9 +84,20 @@ app.get(['/', '/blog'], (req, res) => {
 
 app.get('/blog/:uid', (req, res) => {
   var uid = req.params.uid
-  req.prismic.api.getByUID('document.type', uid).then(post => {
+  req.prismic.api.getByUID('blog', uid)
+  .then(post => {
     if (post) {
-      res.render('post', {post: post})
+      var articles = [
+        post
+      ]
+      var content = {
+        title: post.data.uid,
+        description: conf.fomtirth.pages['blog'],
+        prismicDocs: articles,
+        text: _.head(post.data['blog.richtext'].value).text,
+        single: true
+      }
+      res.render('post', content)
     } else {
       res.status(404).send('Not found')
     }

@@ -2,17 +2,15 @@ doctype html(lang='en')
 
 html
   head
-    title #{pageTitle} - #{pageDescription} - fomtirth
+    title #{title} - #{description} - fomtirth
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     style
       include /stylesheets/default.css
   body
     block content
       header
-        h1 fomtirth
-        p #{pageDescription}
-        nav
-          a(href="/") Home
-          a(href="/files") Files
-          a(href="/games") Games
-
+        h1 
+          a(href='/') fomtirth
+        p #{description}
+        form(method='POST' action='/search')
+          input(type='text', placeholder='Search for articles, games, code and other stuff' name='search')

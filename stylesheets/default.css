@@ -21,30 +21,13 @@ a:hover {
 header {
   padding: 0.5% 5%;
 }
-header nav {
-  background-color: #FAFAFA;
-}
-header nav a {
-  text-decoration: none;
-  padding: 0 5%;
-  border-bottom: 5px solid #FFFFFF;
-}
-header nav a:hover {
-  border-bottom: 5px solid #000000;
+
+header input[type=text] {
+  width: 100%;
 }
 
 section {
-  width: 70%;
-  float: left;
-}
-
-article {
-  padding: 0% 5%;
-}
-
-aside {
-  width: 30%;
-  float: right;
+  padding: 0 5%;
 }
 
 footer {
