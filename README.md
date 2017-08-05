@@ -5,7 +5,6 @@ Personal website in node.
 + ~~make it work~~
 + ~~add blog and content (Prismic)~~
 + responsive layout
-+ GitHub integration and local file navigation
 + Loggly integration
 + Cloudant integration
 + deploy with Docker
