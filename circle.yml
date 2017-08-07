@@ -15,7 +15,7 @@ deployment:
   production:
     branch: master
     codedeploy:
-      pulse:
+      fomtirth:
         application_root: /
         region: eu-west-1
         revision_location:
