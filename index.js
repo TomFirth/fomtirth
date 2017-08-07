@@ -1,5 +1,4 @@
 var bodyParser = require('body-parser')
-var dotenv = require('dotenv')
 var errorHandler = require('errorhandler')
 var express = require('express')
 var app = express()
@@ -47,7 +46,7 @@ app.use((req, res, next) => {
 app.get(['/', '/blog'], (req, res) => {
   req.prismic.api.query(
     prismic.Predicates.at('document.type', 'blog'),
-    { orderings : '[date desc]', pageSize : 50, page : 1 }
+    { orderings: '[date desc]', pageSize: 50, page: 1 }
   )
   .then((res) => {
     if (res) {
