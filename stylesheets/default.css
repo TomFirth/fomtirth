@@ -8,9 +8,14 @@ html, body {
 h1 a {
   color: #FFFFFF;
 }
-h1, h2, h3 {
+h1 {
   background: #FFF2E5;
   color: #FFF2E5;
+}
+h2, h3 {
+  background: #FFF2E5;
+  color: #FFF2E5;
+  display:inline;
 }
 p {}
 a {
@@ -18,11 +23,6 @@ a {
   padding: 0.5%;
   text-decoration: none;
 }
-
-input::placeholder {
-  color: #F49B41;
-}
-
 a:hover {
   color: #444444;
 }
@@ -38,6 +38,10 @@ header input[type=text] {
   border: 1px solid #F49B41;
 }
 
+input::placeholder {
+  color: #F49B41;
+}
+
 section {
   padding: 0 5%;
 }
@@ -46,4 +50,8 @@ footer {
   width: 100%;
   clear: both;
   padding: 0% 5%;
+}
+
+p.title {
+
 }

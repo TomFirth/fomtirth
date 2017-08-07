@@ -3,34 +3,27 @@ machine:
     version: 8.1.4
 dependencies:
   pre:
+    - npm install standard
 test:
   pre:
-    - mkdir -p $CIRCLE_TEST_REPORTS/unit
-    - mkdir -p $CIRCLE_TEST_REPORTS/coverage
   override:
+    - standard
   post:
-    - cp -r ./coverage/ $CIRCLE_ARTIFACTS/coverage
     - mkdir bin
     - cp `which node` bin/.
 deployment:
   production:
-    branch: pulse_move
+    branch: master
     codedeploy:
       pulse:
         application_root: /
         region: eu-west-1
         revision_location:
-          revision_type: S3
-          s3_location:
-            bucket: systembuilds
-            key_pattern: fomtirth-dev
         deployment_group: Production
         deployment_config: CodeDeployDefault.OneAtATime
     commands:
-      - node ./index.js
 experimental:
   notify:
     branches:
       only:
         - master
-        
