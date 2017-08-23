@@ -1,9 +1,11 @@
 machine:
   node:
-    version: 8.1.4
+    version: 8.3.0
 dependencies:
   pre:
     - npm install standard
+  post: 
+    - sudo service apache2 restart
 test:
   pre:
   override:
@@ -15,15 +17,9 @@ deployment:
   production:
     branch: master
     codedeploy:
-      fomtirth:
+      fomtirth-dev:
         application_root: /
         region: eu-west-2
         revision_location:
         deployment_group: Production
-        deployment_config: CodeDeployDefault.OneAtATime
     commands:
-experimental:
-  notify:
-    branches:
-      only:
-        - master
