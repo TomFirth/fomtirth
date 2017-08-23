@@ -17,7 +17,7 @@ deployment:
   production:
     branch: master
     codedeploy:
-      fomtirth-dev:
+      fomtirth:
         application_root: /
         region: eu-west-2
         revision_location:
