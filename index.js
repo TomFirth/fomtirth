@@ -4,7 +4,6 @@ var express = require('express')
 var app = express()
 var methodOverride = require('method-override')
 var _ = require('lodash')
-var http = require('http')
 var path = require('path')
 var prismic = require('prismic-nodejs')
 
