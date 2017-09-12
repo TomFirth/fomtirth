@@ -1,6 +1,6 @@
 FROM ubuntu:14.04
 
-COPY ./fomtirth /opt/
+COPY . /opt/fomtirth/
 EXPOSE 8080
 
 ENTRYPOINT ["/opt/fomtirth"]
