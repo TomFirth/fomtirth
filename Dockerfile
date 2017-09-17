@@ -2,6 +2,6 @@
 FROM ubuntu:16.04
 
 COPY . /opt/
-EXPOSE 3000
+EXPOSE 8080
 
 ENTRYPOINT ["/opt/fomtirth"]
