@@ -1,0 +1,17 @@
+machine:
+  services:
+    - docker
+dependencies:
+  post:
+    - docker build -t $AWS_ACCOUNT_ID.dkr.ecr.eu-west-2.amazonaws.com/fomtirth:$CIRCLE_SHA1 .
+
+test:
+  post:
+    - docker run -d -p 8080:8080 --name fomtirth $AWS_ACCOUNT_ID.dkr.ecr.eu-west-2.amazonaws.com/fomtirth:$CIRCLE_SHA1; sleep 10
+    - curl --retry 10 --retry-delay 5 localhost:3000
+
+deployment:
+  prod:
+    branch: master
+    commands:
+      - ./deploy.sh
