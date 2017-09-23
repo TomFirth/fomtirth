@@ -57,27 +57,14 @@ section {
 }
 
 footer {
-  width: 90%;
-  clear: both;
   padding: 5%;
 }
 
 footer a {
   color: #666666;
-  float: unset;
-  display: block;
   background: transparent;
 }
 
 footer a:hover {
   color: #FF0000;
-}
-
-footer a span {
-  visibility: hidden;
-  padding: 0 0 0 1%;
-}
-
-footer a:hover span {
-  visibility: visible;
 }
