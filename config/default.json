@@ -1,0 +1,33 @@
+{
+  "prismic": {
+    "localisation": ["en"]
+  },
+  "fomtirth": {
+    "about": {
+      "name": "Tom Firth",
+      "website": "fomtirth",
+      "domains": [".com"],
+      "email": "tom.firth84@gmail.com"
+    },
+    "pages": {
+      "home": "Blog, files and stuff",
+      "blog": "General nonsense and updates",
+      "games": "Fun for all the family",
+      "other": "The fruits of my boredom"
+    },
+    "social": {
+      "twitter": {
+        "user": "fomtirth",
+        "url": "https://twitter.com/fomtirth"
+      },
+      "instagram": {
+        "user": "TomFirth84",
+        "url": "https://www.instagram.com/tomfirth84"
+      },
+      "github": {
+        "user": "TomFirth",
+        "url": "https://github.com/TomFirth"
+      }
+    }
+  }
+}

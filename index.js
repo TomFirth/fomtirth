@@ -5,7 +5,7 @@ var _ = require('lodash')
 var path = require('path')
 var prismic = require('prismic-nodejs')
 
-var conf = require('config/default')
+var conf = require('./config/default.json')
 
 var configuration = require('./prismic-configuration')
 
