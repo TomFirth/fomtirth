@@ -43,6 +43,7 @@ header {
 header input[type=text] {
   width: 100%;
   padding: 1%;
+  margin: 1% 0 0 0;
   font-size: 15pt;
   border: 1px solid #666666;
 }
@@ -58,7 +59,7 @@ section {
 footer {
   width: 100%;
   clear: both;
-  padding: 0% 5%;
+  padding: 5%;
 }
 
 footer a {

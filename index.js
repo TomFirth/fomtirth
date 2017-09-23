@@ -96,9 +96,13 @@ app.get('/:uid', (req, res) => {
       if (post.data['article.video']) {
         video = post.data['article.video'].value.url
       }
+      let description = ''
+      _.forEach(post.data['article.description'].value, value => {
+        description += value.text + '\n\n\n\n'
+      })
       var content = {
         title: _.head(post.data['article.title'].value).text,
-        description: _.head(post.data['article.description'].value).text,
+        description,
         image: post.data['article.image'].value.main.url,
         repository,
         url,
@@ -110,4 +114,9 @@ app.get('/:uid', (req, res) => {
       res.status(404).send('Not found')
     }
   })
+})
+
+app.get('/all/support', (req, res) => {
+  // support
+  res.redirect('/')
 })
