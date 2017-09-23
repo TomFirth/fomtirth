@@ -1,7 +1,0 @@
-# Building on top of Ubuntu 16.04. The best distro around.
-FROM ubuntu:16.04
-
-COPY . /opt/
-EXPOSE 8080
-
-ENTRYPOINT ["/opt/fomtirth"]
