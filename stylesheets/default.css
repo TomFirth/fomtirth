@@ -41,7 +41,7 @@ header {
 }
 
 header input[type=text] {
-  width: 100%;
+  width: 98%;
   padding: 1%;
   margin: 1% 0 0 0;
   font-size: 15pt;
