@@ -1,8 +1,6 @@
 var bodyParser = require('body-parser')
-var errorHandler = require('errorhandler')
 var express = require('express')
 var app = express()
-var methodOverride = require('method-override')
 var _ = require('lodash')
 var path = require('path')
 var prismic = require('prismic-nodejs')
@@ -13,10 +11,12 @@ var configuration = require('./prismic-configuration')
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 app.locals.basedir = path.join(__dirname, '/')
-app.use(bodyParser().urlencoded())
-app.use(bodyParser().json())
-app.use(methodOverride())
-app.use(errorHandler())
+app.use(bodyParser.urlencoded({
+  extended: true
+}))
+app.use(bodyParser.json({
+  extended: true
+}))
 
 require('dotenv').config()
 
