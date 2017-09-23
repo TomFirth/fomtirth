@@ -96,13 +96,9 @@ app.get('/:uid', (req, res) => {
       if (post.data['article.video']) {
         video = post.data['article.video'].value.url
       }
-      let description = ''
-      _.forEach(post.data['article.description'].value, value => {
-        description += value.text + '\n\n\n\n'
-      })
       var content = {
         title: _.head(post.data['article.title'].value).text,
-        description,
+        description: post.data['article.description'].value,
         image: post.data['article.image'].value.main.url,
         repository,
         url,

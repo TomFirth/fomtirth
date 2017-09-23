@@ -15,7 +15,8 @@ article
       if video
         p video: 
           a(href= video)= video
-      p= description
+      each paragraph in description
+        p= paragraph.text
       img(src= image alt=title title= title)
 
 include ./partials/footer.pug
