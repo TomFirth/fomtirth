@@ -11,9 +11,7 @@
     },
     "pages": {
       "home": "Blog, files and stuff",
-      "blog": "General nonsense and updates",
-      "games": "Fun for all the family",
-      "other": "The fruits of my boredom"
+      "article": "General nonsense and updates"
     },
     "social": {
       "twitter": {
@@ -22,11 +20,19 @@
       },
       "instagram": {
         "user": "TomFirth84",
-        "url": "https://www.instagram.com/tomfirth84"
+        "url": "https://www.instagram.com/fomtirth"
       },
       "github": {
         "user": "TomFirth",
         "url": "https://github.com/TomFirth"
+      },
+      "tumblr": {
+        "user": "tomfirth",
+        "url": "https://tomfirth.tumblr.com"
+      },
+      "youtube": {
+        "user": "TomFirth84",
+        "url": "https://www.youtube.com/c/TomFirth84"
       }
     }
   }

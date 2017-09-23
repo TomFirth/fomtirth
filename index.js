@@ -5,9 +5,8 @@ var _ = require('lodash')
 var path = require('path')
 var prismic = require('prismic-nodejs')
 
-var conf = require('./config/default.json')
-
 var configuration = require('./prismic-configuration')
+var conf = require('./config/default')
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
@@ -24,31 +23,36 @@ require('dotenv').config()
 var port = process.env.PORT || 8080
 
 app.listen(port, () => {
-  console.log(port, 'belongs to us')
+  console.log(`${port} belongs to us`)
 })
 
 app.use((req, res, next) => {
   prismic.api(configuration.apiEndpoint, {accessToken: configuration.accessToken, req})
-    .then(api => {
-      req.prismic = {api}
-      res.locals.ctx = {
-        endpoint: configuration.apiEndpoint,
-        linkResolver: configuration.linkResolver
-      }
-      next()
-    }).catch(err => {
-      if (err.status === 404) {
-        res.status(404).send('There was a problem connecting to your API, please check your configuration file for errors.')
-      } else {
-        res.status(500).send('Error 500: ' + err.message)
-      }
-    })
+  .then(api => {
+    req.prismic = {api}
+    res.locals.ctx = {
+      endpoint: configuration.apiEndpoint,
+      linkResolver: configuration.linkResolver
+    }
+    next()
+  }).catch(err => {
+    if (err.status === 404) {
+      res.status(404).send('Prismic configuration errored')
+    } else {
+      res.status(500).send('Error 500: ' + err.message)
+    }
+  })
 })
 
-app.get(['/', '/blog'], (req, res) => {
+app.post('/search', (req, res) => {
+  // search
+  res.redirect('/')
+})
+
+app.get('/', (req, res) => {
   req.prismic.api.query(
-    prismic.Predicates.at('document.type', 'blog'),
-    { orderings: '[date desc]', pageSize: 50, page: 1 }
+    prismic.Predicates.at('document.type', 'article'),
+    { orderings: '[date desc]', pageSize: 5, page: 1 }
   )
   .then((res) => {
     if (res) {
@@ -56,10 +60,9 @@ app.get(['/', '/blog'], (req, res) => {
       _.forEach(res.results, (article) => {
         articles.push({
           uid: article.uid,
-          title: article.uid,
-          type: article.type,
-          slug: article.slug,
-          data: article.data['blog.richtext'].value[0].text
+          title: _.head(article.data['article.title'].value).text,
+          description: _.head(article.data['article.description'].value).text,
+          image: article.data['article.image'].value.main.url
         })
       })
       return articles
@@ -69,31 +72,40 @@ app.get(['/', '/blog'], (req, res) => {
   })
   .then((articles) => {
     var content = {
-      title: 'blog',
-      description: conf.fomtirth.pages['blog'],
       prismicDocs: articles,
-      single: false
+      footer: conf.fomtirth.social
     }
-    res.render('post', content)
+    res.render('home', content)
   })
 })
 
-app.get('/blog/:uid', (req, res) => {
+app.get('/:uid', (req, res) => {
   var uid = req.params.uid
-  req.prismic.api.getByUID('blog', uid)
+  req.prismic.api.getByUID('article', uid)
   .then(post => {
     if (post) {
-      var articles = [
-        post
-      ]
-      var content = {
-        title: post.data.uid,
-        description: conf.fomtirth.pages['blog'],
-        prismicDocs: articles,
-        text: _.head(post.data['blog.richtext'].value).text,
-        single: true
+      let repository = null
+      let url = null
+      let video = null
+      if (post.data['article.repository']) {
+        repository = post.data['article.repository'].value.url
       }
-      res.render('post', content)
+      if (post.data['article.url']) {
+        url = post.data['article.url'].value.url
+      }
+      if (post.data['article.video']) {
+        video = post.data['article.video'].value.url
+      }
+      var content = {
+        title: _.head(post.data['article.title'].value).text,
+        description: _.head(post.data['article.description'].value).text,
+        image: post.data['article.image'].value.main.url,
+        repository,
+        url,
+        video,
+        footer: conf.fomtirth.social
+      }
+      res.render('article', content)
     } else {
       res.status(404).send('Not found')
     }

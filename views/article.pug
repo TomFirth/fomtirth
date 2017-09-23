@@ -1,0 +1,21 @@
+include ./partials/header.pug
+
+article
+  //- main content
+
+  section
+    article
+      h3= title
+      if url
+        p url: 
+          a(href= url)= url
+      if repository
+        p repository: 
+          a(href= repository)= repository
+      if video
+        p video: 
+          a(href= video)= video
+      p= description
+      img(src= image alt=title title= title)
+
+include ./partials/footer.pug

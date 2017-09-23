@@ -2,7 +2,10 @@ doctype html(lang='en')
 
 html
   head
-    title #{title} - #{description} - fomtirth
+    if title
+      title #{title} - fomtirth
+    else
+      title Welcome to fomtirth
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     style
       include /stylesheets/default.css
@@ -11,6 +14,5 @@ html
       header
         h1 
           a(href='/') fomtirth
-        p #{description}
         form(method='POST' action='/search')
           input(type='text', placeholder='Search for articles, games, code and other stuff' name='search')

@@ -1,32 +1,41 @@
+/* DEFAULT HTML */
 html, body {
   margin: 0;
-  color: #777777;
-  background-color: #ffffff;
+  color: #000000;
+  background: #FFFFFF;
   font-family: sans-serif;
-  font-size: 10pt;
+  font-size: 12pt;
+  letter-spacing: 1pt;
 }
-h1 a {
+
+h1, h2, h3 {
+  background: #666666;
   color: #FFFFFF;
 }
-h1 {
-  background: #FFF2E5;
-  color: #FFF2E5;
-}
-h2, h3 {
-  background: #FFF2E5;
-  color: #FFF2E5;
-  display:inline;
-}
-p {}
+
 a {
-  color: #F49B41;
+  background: #666666;
+  color: #FFFFFF;
   padding: 0.5%;
   text-decoration: none;
 }
+
 a:hover {
-  color: #444444;
+  background: #FFFFFF;
+  color: #000000;
 }
 
+input[type=text] {
+  background: #FFFFFF;
+  color: #000000;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+/* PAGE */
 header {
   padding: 0.5% 5%;
 }
@@ -34,12 +43,12 @@ header {
 header input[type=text] {
   width: 100%;
   padding: 1%;
-  font-size: 13pt;
-  border: 1px solid #F49B41;
+  font-size: 15pt;
+  border: 1px solid #666666;
 }
 
 input::placeholder {
-  color: #F49B41;
+  color: #000000;
 }
 
 section {
@@ -52,6 +61,22 @@ footer {
   padding: 0% 5%;
 }
 
-p.title {
+footer a {
+  color: #666666;
+  float: unset;
+  display: block;
+  background: transparent;
+}
 
+footer a:hover {
+  color: #FF0000;
+}
+
+footer a span {
+  visibility: hidden;
+  padding: 0 0 0 1%;
+}
+
+footer a:hover span {
+  visibility: visible;
 }

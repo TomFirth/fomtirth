@@ -1,0 +1,14 @@
+include ./partials/header.pug
+
+article
+  //- main content
+
+  section
+    each article in prismicDocs
+      article 
+        h3
+          a(href='/' + article.uid)= article.title
+        p= article.description
+        img(src= article.image alt=article.title title= article.title)
+
+include ./partials/footer.pug
