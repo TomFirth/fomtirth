@@ -5,7 +5,8 @@ var _ = require('lodash')
 var path = require('path')
 var prismic = require('prismic-nodejs')
 
-var conf = require('./config/default')
+var conf = require('config/default')
+
 var configuration = require('./prismic-configuration')
 
 app.set('views', path.join(__dirname, 'views'))
