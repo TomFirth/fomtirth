@@ -1,0 +1,23 @@
+doctype html(lang='en')
+
+html
+  head
+    if title
+      title #{title} - fomtirth
+    else
+      title Welcome to fomtirth
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    style
+      include /public/stylesheets/default.css
+  body
+    block content
+      header
+        h1 
+          a(href='/') fomtirth
+        form(method='POST' action='/')
+          input#nameInput(type='text', placeholder='Search for articles, games, code and other stuff' 
+          name='search' autofocus='true' onkeyup='changeInput(this.value)' list='hugeList')
+          datalist#hugeList
+            each option in searchCache
+              option(value=option)
+        <div id="result"></div>
