@@ -9,13 +9,6 @@ const cache = require('./libs/cache')
 const conf = require('./config/default')
 const searchCache = require('./config/search')
 
-const configuration = {
-  apiEndpoint: 'https://fomtirth.prismic.io/api',
-  accessToken: process.env.PRISMIC_ACCESS_TOKEN,
-  clientId: process.env.PRISMIC_CLIENT_ID,
-  clientSecret: process.env.PRISMIC_CLIENT_SECRET
-}
-
 app.use(express.static(path.join(__dirname, 'public')))
 app.set('views', path.join(__dirname, 'public/views'))
 app.set('view engine', 'pug')
@@ -29,7 +22,12 @@ app.use(bodyParser.json({
 
 require('dotenv').config()
 
-console.log('++ configuration', configuration)
+const configuration = {
+  apiEndpoint: 'https://fomtirth.prismic.io/api',
+  accessToken: process.env.PRISMIC_ACCESS_TOKEN,
+  clientId: process.env.PRISMIC_CLIENT_ID,
+  clientSecret: process.env.PRISMIC_CLIENT_SECRET
+}
 
 const port = process.env.PORT || 8080
 
