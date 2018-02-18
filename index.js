@@ -30,21 +30,20 @@ app.listen(port, () => {
 })
 
 app.use((req, res, next) => {
-  prismic.api(configuration.apiEndpoint, {accessToken: configuration.accessToken, req})
+  prismic.api(configuration.apiEndpoint, {
+    accessToken: configuration.accessToken,
+    req
+  })
   .then(api => {
-    req.prismic = {api}
+    req.prismic = { api }
     res.locals.ctx = {
       endpoint: configuration.apiEndpoint,
       linkResolver: configuration.linkResolver
     }
     next()
   })
-  .catch(err => {
-    if (err.status === 404) {
-      res.status(404).send('Prismic configuration errored')
-    } else {
-      res.status(500).send('Error 500: ' + err.message)
-    }
+  .catch((error) => {
+    res.status(error.status).send(error.message)
   })
 })
 
@@ -87,7 +86,7 @@ app.get('/', (req, res) => {
     res.render('home', content)
   })
   .catch(error => {
-    console.error(error)
+    res.status(error.status).send(error)
   })
 })
 
