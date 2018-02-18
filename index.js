@@ -6,9 +6,15 @@ const prismic = require('prismic-nodejs')
 
 const search = require('./libs/search')
 const cache = require('./libs/cache')
-const configuration = require('./prismic-configuration')
 const conf = require('./config/default')
 const searchCache = require('./config/search')
+
+const configuration = {
+  apiEndpoint: 'https://fomtirth.prismic.io/api',
+  accessToken: process.env.PRISMIC_ACCESS_TOKEN,
+  clientId: process.env.PRISMIC_CLIENT_ID,
+  clientSecret: process.env.PRISMIC_CLIENT_SECRET
+}
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.set('views', path.join(__dirname, 'public/views'))
@@ -23,6 +29,8 @@ app.use(bodyParser.json({
 
 require('dotenv').config()
 
+console.log('++ configuration', configuration)
+
 const port = process.env.PORT || 8080
 
 app.listen(port, () => {
@@ -35,16 +43,17 @@ app.use((req, res, next) => {
     req
   })
   .then(api => {
-    try {
-      req.prismic = { api }
-      res.locals.ctx = {
-        endpoint: configuration.apiEndpoint,
-        linkResolver: configuration.linkResolver
+    req.prismic = { api }
+    res.locals.ctx = {
+      endpoint: configuration.apiEndpoint,
+      linkResolver: (doc, ctx) => {
+        if (doc.type === 'article') {
+          return '/' + encodeURIComponent(doc.uid)
+        }
+        return '/'
       }
-      next()
-    } catch (error) {
-      res.status(error.status).send(error.message)
     }
+    next()
   })
   .catch((error) => {
     res.status(error.status).send(error.message)
