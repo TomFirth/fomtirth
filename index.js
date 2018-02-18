@@ -35,12 +35,16 @@ app.use((req, res, next) => {
     req
   })
   .then(api => {
-    req.prismic = { api }
-    res.locals.ctx = {
-      endpoint: configuration.apiEndpoint,
-      linkResolver: configuration.linkResolver
+    try {
+      req.prismic = { api }
+      res.locals.ctx = {
+        endpoint: configuration.apiEndpoint,
+        linkResolver: configuration.linkResolver
+      }
+      next()
+    } catch (error) {
+      res.status(error.status).send(error.message)
     }
-    next()
   })
   .catch((error) => {
     res.status(error.status).send(error.message)
