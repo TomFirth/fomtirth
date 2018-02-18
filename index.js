@@ -3,12 +3,15 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const prismic = require('prismic-nodejs')
+const favicon = require('serve-favicon')
 
 const search = require('./libs/search')
 const cache = require('./libs/cache')
+const configuration = require('./prismic-configuration')
 const conf = require('./config/default')
 const searchCache = require('./config/search')
 
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')))
 app.use(express.static(path.join(__dirname, 'public')))
 app.set('views', path.join(__dirname, 'public/views'))
 app.set('view engine', 'pug')
@@ -20,14 +23,8 @@ app.use(bodyParser.json({
   extended: true
 }))
 
-require('dotenv').config()
-
-const configuration = {
-  apiEndpoint: 'https://fomtirth.prismic.io/api',
-  accessToken: process.env.PRISMIC_ACCESS_TOKEN,
-  clientId: process.env.PRISMIC_CLIENT_ID,
-  clientSecret: process.env.PRISMIC_CLIENT_SECRET
-}
+const env = process.env.NODE_ENV || 'development'
+if (env === 'development') require('dotenv').config()
 
 const port = process.env.PORT || 8080
 
@@ -36,25 +33,21 @@ app.listen(port, () => {
 })
 
 app.use((req, res, next) => {
-  prismic.api(configuration.apiEndpoint, {
-    accessToken: configuration.accessToken,
-    req
-  })
+  prismic.api(configuration.apiEndpoint, {accessToken: configuration.accessToken, req})
   .then(api => {
-    req.prismic = { api }
+    req.prismic = {api}
     res.locals.ctx = {
       endpoint: configuration.apiEndpoint,
-      linkResolver: (doc, ctx) => {
-        if (doc.type === 'article') {
-          return '/' + encodeURIComponent(doc.uid)
-        }
-        return '/'
-      }
+      linkResolver: configuration.linkResolver
     }
     next()
   })
-  .catch((error) => {
-    res.status(error.status).send(error.message)
+  .catch(err => {
+    if (err.status === 404) {
+      res.status(404).send('Prismic configuration errored')
+    } else {
+      res.status(500).send('Error 500: ' + err.message)
+    }
   })
 })
 
@@ -97,7 +90,7 @@ app.get('/', (req, res) => {
     res.render('home', content)
   })
   .catch(error => {
-    res.status(error.status).send(error)
+    console.error(error)
   })
 })
 
