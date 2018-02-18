@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const prismic = require('prismic-nodejs')
+const favicon = require('serve-favicon')
 
 const search = require('./libs/search')
 const cache = require('./libs/cache')
@@ -10,6 +11,8 @@ const configuration = require('./prismic-configuration')
 const conf = require('./config/default')
 const searchCache = require('./config/search')
 
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')))
+app.use(express.static(path.join(__dirname, 'public')))
 app.set('views', path.join(__dirname, 'public/views'))
 app.set('view engine', 'pug')
 app.locals.basedir = path.join(__dirname, '/')
@@ -58,7 +61,7 @@ app.post('/', (req, res) => {
 app.get('/', (req, res) => {
   req.prismic.api.query(
     prismic.Predicates.at('document.type', 'article'),
-    { orderings: '[date desc]', pageSize: 5, page: 1 }
+    { orderings: '[document.first_publication_date desc]', pageSize: 5, page: 1 }
   )
   .then(res => {
     if (res) {
@@ -85,8 +88,8 @@ app.get('/', (req, res) => {
     }
     res.render('home', content)
   })
-  .catch(err => {
-    console.log('++ flow error', err)
+  .catch(error => {
+    console.error(error)
   })
 })
 
