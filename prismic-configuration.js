@@ -1,6 +1,6 @@
 module.exports = {
 
-  apiEndpoint: 'https://fomtirth.prismic.io/api',
+  apiEndpoint: 'https://fomtirth.cdn.prismic.io/api',
 
   // -- Access token if the Master is not open
   accessToken: process.env.PRISMIC_ACCESS_TOKEN,

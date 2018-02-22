@@ -41,11 +41,7 @@ app.use((req, res, next) => {
     next()
   })
   .catch(err => {
-    if (err.status === 404) {
-      res.status(404).send('Prismic configuration errored')
-    } else {
-      res.status(500).send('Error 500: ' + err.message)
-    }
+    res.status(err.status).send(err.message)
   })
 })
 
@@ -69,7 +65,7 @@ app.get('/', (req, res) => {
         articles.push({
           uid: article.uid,
           title: article.data['article.title'].value[0].text,
-          description: article.data['article.description'].value[0].text,
+          description: article.data['article.description'].value[0].text + '..',
           image: article.data['article.image'].value.main.url
         })
       })
