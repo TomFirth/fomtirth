@@ -19,10 +19,3 @@ html
       header
         h1 
           a(href='/') fomtirth
-        form(method='POST' action='/')
-          input#nameInput(type='text', placeholder='Search for articles, games, code and other stuff' 
-          name='search' autofocus='true' list='hugeList')
-          datalist#hugeList
-            each option in searchCache
-              option(value=option)
-        <div id="result"></div>
