@@ -5,7 +5,7 @@ const pris = require('../libs/prismic')
 const config = require('../config/default')
 
 module.exports = (app) => {
-  app.get('/', async (req, res) => {
+  app.get(['/', '/page/:num'], async (req, res) => {
     try {
       const content = await cache.read('articles')
       const sideList = await pris.sideList(req)
@@ -14,7 +14,7 @@ module.exports = (app) => {
           prismic.Predicates.at('document.type', 'article'), {
             orderings: '[document.first_publication_date desc]',
             pageSize: 5,
-            page: 1
+            page: req.body.num || 1
           }
         )
         const content = await pris.many(articles)
@@ -25,6 +25,7 @@ module.exports = (app) => {
         sideList,
         footer: config.fomtirth.social
       })
+      throw new Error('No article content')
     } catch (error) {
       res.status(error.status).send(error.message)
     }

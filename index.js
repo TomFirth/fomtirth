@@ -19,7 +19,17 @@ app.use(bodyParser.json({
 }))
 
 const env = process.env.NODE_ENV || 'development'
-if (env === 'development') require('dotenv').config()
+if (env === 'development') {
+  require('dotenv').config()
+} else {
+  app.use((req, res, next) => {
+    if (req.secure) {
+      next()
+    } else {
+      res.redirect('https://' + req.headers.host + req.url)
+    }
+  })
+}
 
 const port = process.env.PORT || 8080
 

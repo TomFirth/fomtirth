@@ -1,0 +1,20 @@
+{
+  "name": "Fomtirth",
+  "short_name": "fomtirth",
+  "description": "Personal website",
+  "start_url": ".",
+  "display": "standalone",
+  "icons": [{
+    "src": "images/favicon180x180.png",
+    "sizes": "180x180",
+    "type": "image/png"
+  }, {
+    "src": "images/favicon32x32.png",
+    "sizes": "32x32",
+    "type": "image/png"
+  }, {
+    "src": "images/favicon.png",
+    "sizes": "16x16",
+    "type": "image/png"
+  }]
+}
