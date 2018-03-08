@@ -21,7 +21,7 @@ a {
 
 a:hover {
   background: #FFFFFF;
-  color: #000000;
+  color: #666666;
 }
 
 img {
@@ -35,11 +35,30 @@ header {
 }
 
 section {
+  display: none;
+}
+
+main {
   padding: 0 5%;
+  float: left;
+}
+
+@media screen and (min-width: 768px) {
+  section {
+    display: block;
+    padding: 0 5%;
+    float: left;
+    width: 25vw;
+  }
+
+  main {
+    width: 55vw;
+  }
 }
 
 footer {
   padding: 5%;
+  clear: both;
 }
 
 footer a {

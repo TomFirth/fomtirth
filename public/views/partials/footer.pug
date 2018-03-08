@@ -1,3 +1,7 @@
+section
+  each side in sideList
+    p
+      a(href= '/' + side.uid)= side.title
 footer
   each social, key in footer
     a(href=social.url)= key

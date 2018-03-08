@@ -1,22 +1,19 @@
 include ./partials/header.pug
 
-article
-  //- main content
-
-  section
-    article
-      h3= content.title
-      if content.url
-        p url: 
-          a(href= content.url)= content.url
-      if content.repository
-        p repository: 
-          a(href= content.repository)= content.repository
-      if content.video
-        p video: 
-          a(href= content.video)= content.video
-      each paragraph in content.description
-        p= paragraph.text
-      img(src= content.image alt= content.title title= content.title)
+main
+  article
+  h3= content.title
+  if content.url
+    p url: 
+      a(href= content.url)= content.url
+  if content.repository
+    p repository: 
+      a(href= content.repository)= content.repository
+  if content.video
+    p video: 
+      a(href= content.video)= content.video
+  each paragraph in content.description
+    p= paragraph.text
+  img(src= content.image alt= content.title title= content.title)
 
 include ./partials/footer.pug
