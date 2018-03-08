@@ -2,7 +2,7 @@
   "name": "Fomtirth",
   "short_name": "fomtirth",
   "description": "Personal website",
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
   "icons": [{
     "src": "images/favicon180x180.png",

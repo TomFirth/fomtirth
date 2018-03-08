@@ -19,17 +19,7 @@ app.use(bodyParser.json({
 }))
 
 const env = process.env.NODE_ENV || 'development'
-if (env === 'development') {
-  require('dotenv').config()
-} else {
-  app.use((req, res, next) => {
-    if (req.secure) {
-      next()
-    } else {
-      res.redirect('https://' + req.headers.host + req.url)
-    }
-  })
-}
+if (env === 'development') require('dotenv').config()
 
 const port = process.env.PORT || 8080
 
@@ -38,6 +28,7 @@ app.listen(port, () => {
 })
 
 app.use(async (req, res, next) => {
+  if ((env !== 'development')) res.redirect('https://' + req.headers.host + req.url)
   const api = await prismic.api(configuration.apiEndpoint, {accessToken: configuration.accessToken, req})
   await pris.conn(api, req, res, next)
 })
