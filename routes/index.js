@@ -7,7 +7,8 @@ const config = require('../config/default')
 module.exports = (app) => {
   app.get('/', async (req, res) => {
     try {
-      const content = await cache.read()
+      const content = await cache.read('articles')
+      const sideList = await pris.sideList(req)
       if (!content) {
         const articles = await req.prismic.api.query(
           prismic.Predicates.at('document.type', 'article'), {
@@ -17,10 +18,11 @@ module.exports = (app) => {
           }
         )
         const content = await pris.many(articles)
-        await cache.save(content)
+        await cache.save('articles', content)
       }
       res.render('home', {
         content,
+        sideList,
         footer: config.fomtirth.social
       })
     } catch (error) {
@@ -33,10 +35,15 @@ module.exports = (app) => {
       let uid = req.params.uid
       const article = await req.prismic.api.getByUID('article', uid)
       const content = await pris.one(article)
-      res.render('article', {
-        content,
-        footer: config.fomtirth.social
-      })
+      const sideList = await pris.sideList(req)
+      if (content) {
+        res.render('article', {
+          content,
+          sideList,
+          footer: config.fomtirth.social
+        })
+      }
+      throw new Error('No article content')
     } catch (error) {
       res.status(error.status).send(error.message)
     }

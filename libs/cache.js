@@ -3,9 +3,9 @@ const flat = flatCache.load('fomtirth')
 
 const cache = module.exports = {}
 
-cache.save = async (obj) => {
+cache.save = async (key, obj) => {
   try {
-    await flat.setKey('articles', obj)
+    await flat.setKey(key, obj)
     await flat.save()
     return true
   } catch (error) {
@@ -13,9 +13,9 @@ cache.save = async (obj) => {
   }
 }
 
-cache.read = async () => {
+cache.read = async (key) => {
   try {
-    const getCache = await flat.getKey('articles')
+    const getCache = await flat.getKey(key)
     return getCache
   } catch (error) {
     throw error

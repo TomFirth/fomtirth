@@ -5,18 +5,18 @@ article
 
   section
     article
-      h3= title
-      if url
+      h3= content.title
+      if content.url
         p url: 
-          a(href= url)= url
-      if repository
+          a(href= content.url)= content.url
+      if content.repository
         p repository: 
-          a(href= repository)= repository
-      if video
+          a(href= content.repository)= content.repository
+      if content.video
         p video: 
-          a(href= video)= video
-      each paragraph in description
+          a(href= content.video)= content.video
+      each paragraph in content.description
         p= paragraph.text
-      img(src= image alt=title title= title)
+      img(src= content.image alt= content.title title= content.title)
 
 include ./partials/footer.pug

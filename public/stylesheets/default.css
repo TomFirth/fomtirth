@@ -24,31 +24,14 @@ a:hover {
   color: #000000;
 }
 
-input[type=text] {
-  background: #FFFFFF;
-  color: #000000;
-}
-
 img {
   display: block;
-  max-width:50%;
+  max-width: 50%;
   width: auto;
 }
 
 header {
   padding: 0.5% 5%;
-}
-
-header input[type=text] {
-  width: 98%;
-  padding: 1%;
-  margin: 1% 0 0 0;
-  font-size: 15pt;
-  border: 1px solid #666666;
-}
-
-input::placeholder {
-  color: #000000;
 }
 
 section {
