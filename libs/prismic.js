@@ -1,3 +1,4 @@
+const _ = require('lodash')
 const prismic = require('prismic-nodejs')
 const configuration = require('../prismic-configuration')
 const cache = require('../libs/cache')
@@ -34,19 +35,13 @@ pris.sideList = async (req) => {
 }
 
 pris.one = async (post) => {
-  let repository = null
-  let url = null
-  let video = null
-  if (post.data['article.repository']) repository = post.data['article.repository'].value.url
-  if (post.data['article.url']) url = post.data['article.url'].value.url
-  if (post.data['article.video']) video = post.data['article.video'].value.url
   return {
     title: post.data['article.title'].value[0].text,
     description: post.data['article.description'].value,
     image: post.data['article.image'].value.main.url,
-    repository,
-    url,
-    video
+    repository: _.get(post, 'data["article.repository"].value.url') || null,
+    url: _.get(post, 'data["article.url"].value.url') || null,
+    video: _.get(post, 'data["article.video"].value.url') || null
   }
 }
 
