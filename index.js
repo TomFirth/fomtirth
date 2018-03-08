@@ -28,7 +28,6 @@ app.listen(port, () => {
 })
 
 app.use(async (req, res, next) => {
-  if ((env !== 'development')) res.redirect('https://' + req.headers.host + req.url)
   const api = await prismic.api(configuration.apiEndpoint, {accessToken: configuration.accessToken, req})
   await pris.conn(api, req, res, next)
 })
