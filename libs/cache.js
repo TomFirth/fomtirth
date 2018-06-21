@@ -9,7 +9,8 @@ cache.save = async (key, obj) => {
     await flat.save()
     return true
   } catch (error) {
-    throw error
+    console.error(error)
+    throw new Error(error)
   }
 }
 
@@ -18,6 +19,7 @@ cache.read = async (key) => {
     const getCache = await flat.getKey(key)
     return getCache
   } catch (error) {
-    throw error
+    console.error(error)
+    throw new Error(error)
   }
 }

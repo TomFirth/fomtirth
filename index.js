@@ -32,6 +32,7 @@ app.use(async (req, res, next) => {
     const api = await prismic.api(configuration.apiEndpoint, {accessToken: configuration.accessToken, req})
     pris.conn(api, req, res, next)
   } catch (error) {
+    console.error(error)
     res.status(error.status).send(error.message)
   }
 })

@@ -26,6 +26,7 @@ module.exports = (app) => {
         footer: config.fomtirth.social
       })
     } catch (error) {
+      console.error(error)
       res.status(error.status).send(error.message)
     }
   })
@@ -44,6 +45,7 @@ module.exports = (app) => {
         })
       }
     } catch (error) {
+      console.error(error)
       res.status(error.status).send(error.message)
     }
   })
