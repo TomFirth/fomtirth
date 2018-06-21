@@ -27,7 +27,7 @@ module.exports = (app) => {
       })
     } catch (error) {
       console.error(error)
-      res.status(error.status).send(error.message)
+      res.send(error)
     }
   })
 
@@ -46,7 +46,7 @@ module.exports = (app) => {
       }
     } catch (error) {
       console.error(error)
-      res.status(error.status).send(error.message)
+      res.send(error)
     }
   })
 }

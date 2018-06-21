@@ -37,23 +37,24 @@ pris.sideList = async (req) => {
 
 pris.one = (post) => {
   return {
-    title: post.data['article.title'].value[0].text,
-    description: post.data['article.description'].value,
-    image: post.data['article.image'].value.main.url,
-    repository: _.get(post, 'data["article.repository"].value.url') || null,
-    url: _.get(post, 'data["article.url"].value.url') || null,
-    video: _.get(post, 'data["article.video"].value.url') || null
+    title: _.get(post, '.data["article.title"].value[0].text', ''),
+    description: _.get(post, 'data["article.description"].value', ''),
+    image: _.get(post, 'data["article.image"].value.main.url', ''),
+    repository: _.get(post, 'data["article.repository"].value.url', null),
+    url: _.get(post, 'data["article.url"].value.url', null),
+    video: _.get(post, 'data["article.video"].value.url', null)
   }
 }
 
 pris.many = (articles) => {
   let content = []
   articles.results.forEach(article => {
+    console.log(article)
     content.push({
-      uid: article.uid,
-      title: article.data['article.title'].value[0].text,
-      description: article.data['article.description'].value[0].text + '..',
-      image: article.data['article.image'].value.main.url
+      uid: _.get(article, 'uid', ''),
+      title: _.get(article, 'data["article.title"].value[0].text', ''),
+      description: _.get(article, 'data["article.description"].value[0].text', '') + '..',
+      image: _.get(article, 'data["article.image"].value.main.url', '')
     })
   })
   return content
