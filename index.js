@@ -28,8 +28,12 @@ app.listen(port, () => {
 })
 
 app.use(async (req, res, next) => {
-  const api = await prismic.api(configuration.apiEndpoint, {accessToken: configuration.accessToken, req})
-  await pris.conn(api, req, res, next)
+  try {
+    const api = await prismic.api(configuration.apiEndpoint, {accessToken: configuration.accessToken, req})
+    pris.conn(api, req, res, next)
+  } catch (error) {
+    res.status(error.status).send(error.message)
+  }
 })
 
 require('./routes')(app)

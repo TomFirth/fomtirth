@@ -5,7 +5,7 @@ const cache = require('../libs/cache')
 
 const pris = module.exports = {}
 
-pris.conn = async (api, req, res, next) => {
+pris.conn = (api, req, res, next) => {
   req.prismic = {api}
   res.locals.ctx = {
     endpoint: configuration.apiEndpoint,
@@ -30,11 +30,11 @@ pris.sideList = async (req) => {
     }
     return sideList
   } catch (error) {
-    throw error
+    throw new Error(error)
   }
 }
 
-pris.one = async (post) => {
+pris.one = (post) => {
   return {
     title: post.data['article.title'].value[0].text,
     description: post.data['article.description'].value,
@@ -45,7 +45,7 @@ pris.one = async (post) => {
   }
 }
 
-pris.many = async (articles) => {
+pris.many = (articles) => {
   let content = []
   articles.results.forEach(article => {
     content.push({
@@ -58,7 +58,7 @@ pris.many = async (articles) => {
   return content
 }
 
-pris.side = async (articles) => {
+pris.side = (articles) => {
   let content = []
   articles.results.forEach(article => {
     content.push({

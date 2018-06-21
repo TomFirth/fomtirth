@@ -17,7 +17,7 @@ module.exports = (app) => {
             page: req.body.num || 1
           }
         )
-        const content = await pris.many(articles)
+        const content = pris.many(articles)
         await cache.save('articles', content)
       }
       res.render('home', {
@@ -25,7 +25,6 @@ module.exports = (app) => {
         sideList,
         footer: config.fomtirth.social
       })
-      throw new Error('No article content')
     } catch (error) {
       res.status(error.status).send(error.message)
     }
@@ -35,7 +34,7 @@ module.exports = (app) => {
     try {
       let uid = req.params.uid
       const article = await req.prismic.api.getByUID('article', uid)
-      const content = await pris.one(article)
+      const content = pris.one(article)
       const sideList = await pris.sideList(req)
       if (content) {
         res.render('article', {
@@ -44,7 +43,6 @@ module.exports = (app) => {
           footer: config.fomtirth.social
         })
       }
-      throw new Error('No article content')
     } catch (error) {
       res.status(error.status).send(error.message)
     }
